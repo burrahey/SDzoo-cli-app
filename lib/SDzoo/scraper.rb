@@ -1,8 +1,8 @@
 class SDzoo::SCRAPER
 
   BASE_PATH = "http://animals.sandiegozoo.org/"
-  def self.scrape_and_create_animals
-    sections = Nokogiri::HTML(open("http://animals.sandiegozoo.org/animals")).search("div.views-field-title span.field-content a")
+  def self.scrape_and_create_animals(file_path)
+    sections = Nokogiri::HTML(open(BASE_PATH + file_path)).search("div.views-field-title span.field-content a")
 
     animal_array = []
 
@@ -20,12 +20,7 @@ class SDzoo::SCRAPER
     doc = Nokogiri::HTML(open(BASE_PATH + file_path))
 
     taxo_array = doc.css("div.field-node--field-classifications.field-name-field-classifications div.field__items div.field__item ul").text.split("\n\t")
-    if taxo_array[0] == "CLASS: Reptilia (Reptiles)"
-      reptile = SDzoo::Reptiles.new("name", "url")
-      binding.pry
-    else
-      animal_hash[:taxonomy] = taxo_array.join(", ").strip.chomp(",")
-    end
+    animal_hash[:taxonomy] = taxo_array.join(", ").strip.chomp(",")
 
     animal_hash[:conservation_status] = doc.search("div.vocabulary-conservation-status div.field__item").text.strip
     animal_hash[:life_span] = doc.css("div#block-sidebarcontent").text.strip.split("\n\n")[1].strip

@@ -1,3 +1,3 @@
-class SDzoo::Reptiles < SDzoo::ANIMAL
-  
+class SDzoo::REPTILES < SDzoo::ANIMAL
+
 end

@@ -31,13 +31,14 @@ class SDzoo::CLI
   end
 
   def create_animals
-    animal_array = SDzoo::SCRAPER.scrape_and_create_animals
+    animal_array = SDzoo::SCRAPER.scrape_and_create_animals("animals/arthropods")
   end
 
   def add_attributes_to_animals
     SDzoo::ANIMAL.all.each do |animal|
       animal_hash = SDzoo::SCRAPER.add_attributes_to_animals(animal.url)
       animal.add_attributes_to_animals(animal_hash)
+
     end
   end
 
