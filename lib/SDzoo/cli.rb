@@ -14,7 +14,13 @@ class SDzoo::CLI
     puts "You can type a number or name."
     input = gets.strip
 
+    create_animals
+    add_attributes_to_animals
+
     while input != "exit"
+      if input == "list"
+        SDzoo::ANIMAL.display_all
+      end
 
       puts "What would you like to see next? Here are your options"
       puts "You can type 'list' to see the main list again or simply type 'exit'."
@@ -24,8 +30,20 @@ class SDzoo::CLI
     bye
   end
 
+  def create_animals
+    animal_array = SDzoo::SCRAPER.scrape_and_create_animals
+  end
+  # 
+  # def add_attributes_to_animals
+  #   SDzoo::ANIMAL.all.each do |animal|
+  #     SDzoo::SCRAPER.add_attributes_to_animals(file_path)
+  #   end
+  # end
+
   def bye
     puts "Goodbye! Thanks for using the San Diego Zoo CLI app. You can do more to help stop animal extinction here: http://endextinction.org/"
   end
+
+
 
 end
