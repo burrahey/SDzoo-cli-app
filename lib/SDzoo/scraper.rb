@@ -21,9 +21,9 @@ class SDzoo::SCRAPER
     taxo_array = doc.css("div.field-node--field-classifications.field-name-field-classifications div.field__items div.field__item ul").text.split("\n\t")
     animal_hash[:taxonomy] = taxo_array.join(", ").strip.chomp(",")
 
-    animal_hash[:conservation_status] = doc.search("div.vocabulary-conservation-status div.field__item").text
-    animal_hash[:life_span] = doc.css("div#block-sidebarcontent").text.strip.split("\n\n")[1]
-    animal_hash[:fun_fact] = doc.css("div#block-sidebarcontent").text.strip.split("FUN FACTS")[-1]
+    animal_hash[:conservation_status] = doc.search("div.vocabulary-conservation-status div.field__item").text.strip
+    animal_hash[:life_span] = doc.css("div#block-sidebarcontent").text.strip.split("\n\n")[1].strip
+    animal_hash[:fun_fact] = doc.css("div#block-sidebarcontent").text.strip.split("FUN FACTS")[-1].strip
 
     animal_hash
   end
