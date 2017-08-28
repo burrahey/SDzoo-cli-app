@@ -33,12 +33,13 @@ class SDzoo::CLI
   def create_animals
     animal_array = SDzoo::SCRAPER.scrape_and_create_animals
   end
-  # 
-  # def add_attributes_to_animals
-  #   SDzoo::ANIMAL.all.each do |animal|
-  #     SDzoo::SCRAPER.add_attributes_to_animals(file_path)
-  #   end
-  # end
+
+  def add_attributes_to_animals
+    SDzoo::ANIMAL.all.each do |animal|
+      animal_hash = SDzoo::SCRAPER.add_attributes_to_animals(animal.url)
+      animal.add_attributes_to_animals(animal_hash)
+    end
+  end
 
   def bye
     puts "Goodbye! Thanks for using the San Diego Zoo CLI app. You can do more to help stop animal extinction here: http://endextinction.org/"

@@ -1,5 +1,6 @@
 class SDzoo::SCRAPER
 
+  BASE_PATH = "http://animals.sandiegozoo.org/"
   def self.scrape_and_create_animals
     sections = Nokogiri::HTML(open("http://animals.sandiegozoo.org/animals")).search("div.views-field-title span.field-content a")
 
@@ -15,7 +16,7 @@ class SDzoo::SCRAPER
 
   def self.add_attributes_to_animals(file_path)
     animal_hash = {}
-    doc = Nokogiri::HTML(open("http://animals.sandiegozoo.org/animals/condor-andean"))
+    doc = Nokogiri::HTML(open(BASE_PATH + file_path))
 
     taxo_array = doc.css("div.field-node--field-classifications.field-name-field-classifications div.field__items div.field__item ul").text.split("\n\t")
     animal_hash[:taxonomy] = taxo_array.join(", ").strip.chomp(",")

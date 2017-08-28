@@ -18,6 +18,6 @@ class SDzoo::ANIMAL
     self.all.each_with_index do |animal, index|
       puts "#{index+1}. #{animal.name}"
     end
-  end
+  end 
 
 end
