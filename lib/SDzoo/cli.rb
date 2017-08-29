@@ -18,7 +18,6 @@ class SDzoo::CLI
         # Handle the case where they entered a number
         if more.to_i > 0 && more.to_i < SDzoo::ANIMAL.send("all_#{input}").length
           search_by_number(input, more)
-
         else
         # Handle the case where they entered a name
           search_by_name(input, more)

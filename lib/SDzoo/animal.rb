@@ -57,7 +57,7 @@ class SDzoo::ANIMAL
     if @conservation_status.downcase.include?("threat") || @conservation_status.downcase.include?("danger")
       puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:red)
     else
-      puts "CONSERVATION STATUS: #{@conservation_status}"
+      puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:green)
     end
     puts "LIFE SPAN: #{@life_span}"
     puts "FUN FACT: #{@fun_fact}"
