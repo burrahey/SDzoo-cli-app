@@ -10,15 +10,7 @@ class SDzoo::CLI
 
       case input.downcase
       when "list"
-        puts  <<~HEREDOC
-          1. Mammals
-          2. Reptiles
-          3. Birds
-          4. Amphibians
-          5. Insects
-          6. Fish
-        HEREDOC
-        puts "You can type a number or name."
+        main_menu
       when "1" || "mammals"
         mammals
       when "2" || "reptiles"
