@@ -4,13 +4,13 @@ Welcome to the San Diego Zoo CLI application! Use this CLI app to find informati
 
 ## Installation
 
-  $ gem install SDzoo
+    $ gem install SDzoo
 
 ## Usage
 
 Type the below and follow the on screen prompts.
 
-  $ SDzoo
+    $ SDzoo
 
 ## Development
 
