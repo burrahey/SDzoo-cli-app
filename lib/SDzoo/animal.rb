@@ -20,12 +20,19 @@ class SDzoo::ANIMAL
   end
 
   def self.display_all
-
     self.all.each_with_index do |animal, index|
       puts "#{index+1}. #{animal.name}"
     end
-
-
+    puts "\n"
   end
 
+  def display_all_attributes
+    puts "Okay, here's some more info:"
+    puts "Name: #{@name}"
+    puts "Taxonomy: #{@taxonomy}"
+    puts "Conservation Status: #{@conservation_status}"
+    puts "Life Span: #{@life_span}"
+    puts "Fun Fact: #{@fun_fact}"
+    puts "\n"
+  end
 end

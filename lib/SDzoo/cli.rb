@@ -20,21 +20,74 @@ class SDzoo::CLI
       when "1" || "mammals"
         create_animals("mammals")
         SDzoo::MAMMALS.display_all
+
+        puts "What animal would you like to find out more about? Enter a number."
+        more = gets.strip.to_i
+        if more < SDzoo::MAMMALS.all.length
+          animal = SDzoo::MAMMALS.all[more - 1]
+          add_attributes_to_animals(animal)
+          animal.display_all_attributes
+        end
+
       when "2" || "reptiles"
         create_animals("reptiles")
         SDzoo::REPTILES.display_all
+
+        puts "What animal would you like to find out more about? Enter a number."
+        more = gets.strip.to_i
+        if more < SDzoo::REPTILES.all.length
+          animal = SDzoo::REPTILES.all[more - 1]
+          add_attributes_to_animals(animal)
+          animal.display_all_attributes
+        end
+
       when "3" || "birds"
         create_animals("birds")
         SDzoo::BIRDS.display_all
+
+        puts "What animal would you like to find out more about? Enter a number."
+        more = gets.strip.to_i
+        if more < SDzoo::BIRDS.all.length
+          animal = SDzoo::BIRDS.all[more - 1]
+          add_attributes_to_animals(animal)
+          animal.display_all_attributes
+        end
+
       when "4" || "amphibians"
         create_animals("amphibians")
         SDzoo::AMPHIBIANS.display_all
+
+        puts "What animal would you like to find out more about? Enter a number."
+        more = gets.strip.to_i
+        if more < SDzoo::AMPHIBIANS.all.length
+          animal = SDzoo::AMPHIBIANS.all[more - 1]
+          add_attributes_to_animals(animal)
+          animal.display_all_attributes
+        end
+
       when "5" || "insects"
         create_animals("arthropods")
-        SDzoo::ANTHROPODS.display_all
+        SDzoo::ARTHROPODS.display_all
+        puts "What animal would you like to find out more about? Enter a number."
+        more = gets.strip.to_i
+        if more < SDzoo::ARTHROPODS.all.length
+          animal = SDzoo::ARTHROPODS.all[more - 1]
+          add_attributes_to_animals(animal)
+          animal.display_all_attributes
+        end
+
       when "6" || "fish"
         create_animals("fish")
         SDzoo::FISH.display_all
+
+        puts "What animal would you like to find out more about? Enter a number."
+        more = gets.strip.to_i
+        if more < SDzoo::MAMMALS.all.length
+          animal = SDzoo::MAMMALS.all[more - 1]
+          add_attributes_to_animals(animal)
+          animal.display_all_attributes
+        end
+
       when 'exit'
         break
       end
@@ -59,12 +112,9 @@ class SDzoo::CLI
     animal_array = SDzoo::SCRAPER.scrape_and_create_animals(type)
   end
 
-  def add_attributes_to_animals
-    #change this method to only scrape animals that people want to see more about
-    SDzoo::ANIMAL.all.each do |animal|
-      animal_hash = SDzoo::SCRAPER.add_attributes_to_animal(animal.url)
-      animal.add_attributes_to_animal(animal_hash)
-    end
+  def add_attributes_to_animals(animal)
+    animal_hash = SDzoo::SCRAPER.add_attributes_to_animal(animal.url)
+    animal.add_attributes_to_animal(animal_hash)
   end
 
   def bye
