@@ -6,36 +6,9 @@ class SDzoo::SCRAPER
 
     sections = Nokogiri::HTML(open(BASE_PATH + BASE_TYPE_PATH + type)).search("div.views-field-title span.field-content a")
 
-    case type
-    when "mammals"
       sections.each do |section|
-        animal = SDzoo::MAMMALS.new(section.text, section["href"])
+        animal = SDzoo::ANIMAL.new(section.text, section["href"], type)
       end
-    when "reptiles"
-      sections.each do |section|
-        animal = SDzoo::REPTILES.new(section.text, section["href"])
-      end
-
-    when "birds"
-      sections.each do |section|
-        animal = SDzoo::BIRDS.new(section.text, section["href"])
-      end
-
-    when "amphibians"
-      sections.each do |section|
-        animal = SDzoo::AMPHIBIANS.new(section.text, section["href"])
-      end
-
-    when "arthropods"
-      sections.each do |section|
-        animal = SDzoo::ARTHROPODS.new(section.text, section["href"])
-      end
-
-    when "fish"
-      sections.each do |section|
-        animal = SDzoo::FISH.new(section.text, section["href"])
-      end
-    end
 
   end
 

@@ -7,31 +7,39 @@ class SDzoo::CLI
     input = gets.strip.downcase
 
     while input != "exit"
-      case input
-      when "list"
-        main_menu
-      when "1" || "mammals"
-        mammals
-      when "2" || "reptiles"
-        reptiles
-      when "3" || "birds"
-        birds
-      when "4" || "amphibians"
-        amphibians
-      when "5" || "insects"
-        arthropods
-      when "6" || "fish"
-        fish
-      when 'exit'
-        break
+
+      if valid_input?(input)
+        create_animals(input)
+        SDzoo::ANIMAL.display_all(input)
+
+        puts "What animal would you like to find out more about? Enter a number."
+        more = gets.strip.to_i
+
+        if more < SDzoo::ANIMAL.send("all_#{input}").length
+          animal = SDzoo::ANIMAL.send("all_#{input}")[more - 1]
+          add_attributes_to_animals(animal)
+          animal.display_all_attributes
+        end
+
+        sleep(2)
+      else
+        "Sorry, that wasn't valid input."
       end
-      sleep(2)
       puts "What kind of animal would you like to learn about next?"
       main_menu
       input = gets.strip.downcase
     end
 
     bye
+  end
+
+  def valid_input?(input)
+    valid = ['mammals', 'birds', 'amphibians', 'arthropods', 'fish', 'reptiles', 'fish']
+    if valid.include?(input)
+      return true
+    else
+      return false
+    end
   end
 
   def create_animals(type)
@@ -45,91 +53,14 @@ class SDzoo::CLI
 
   def main_menu
     puts  <<~HEREDOC
-      1. Mammals
-      2. Reptiles
-      3. Birds
-      4. Amphibians
-      5. Insects
-      6. Fish
+      Mammals
+      Reptiles
+      Birds
+      Amphibians
+      Arthropods
+      Fish
     HEREDOC
-    puts "You can type a number or name, or 'exit'"
-  end
-
-  def mammals
-    create_animals("mammals")
-    SDzoo::MAMMALS.display_all
-
-    puts "What animal would you like to find out more about? Enter a number."
-    more = gets.strip.to_i
-    if more < SDzoo::MAMMALS.all.length
-      animal = SDzoo::MAMMALS.all[more - 1]
-      add_attributes_to_animals(animal)
-      animal.display_all_attributes
-    end
-  end
-
-  def birds
-    create_animals("birds")
-    SDzoo::BIRDS.display_all
-
-    puts "What animal would you like to find out more about? Enter a number."
-    more = gets.strip.to_i
-    if more < SDzoo::BIRDS.all.length
-      animal = SDzoo::BIRDS.all[more - 1]
-      add_attributes_to_animals(animal)
-      animal.display_all_attributes
-    end
-  end
-
-  def reptiles
-    create_animals("reptiles")
-    SDzoo::REPTILES.display_all
-
-    puts "What animal would you like to find out more about? Enter a number."
-    more = gets.strip.to_i
-    if more < SDzoo::REPTILES.all.length
-      animal = SDzoo::REPTILES.all[more - 1]
-      add_attributes_to_animals(animal)
-      animal.display_all_attributes
-    end
-  end
-
-  def fish
-    create_animals("fish")
-    SDzoo::FISH.display_all
-
-    puts "What animal would you like to find out more about? Enter a number."
-    more = gets.strip.to_i
-    if more < SDzoo::MAMMALS.all.length
-      animal = SDzoo::MAMMALS.all[more - 1]
-      add_attributes_to_animals(animal)
-      animal.display_all_attributes
-    end
-  end
-
-  def arthropods
-    create_animals("arthropods")
-    SDzoo::ARTHROPODS.display_all
-    puts "What animal would you like to find out more about? Enter a number."
-    more = gets.strip.to_i
-    if more < SDzoo::ARTHROPODS.all.length
-      animal = SDzoo::ARTHROPODS.all[more - 1]
-      add_attributes_to_animals(animal)
-      animal.display_all_attributes
-    end
-  end
-
-  def amphibians
-    create_animals("amphibians")
-    SDzoo::AMPHIBIANS.display_all
-
-    puts "What animal would you like to find out more about? Enter a number."
-    more = gets.strip.to_i
-    if more < SDzoo::AMPHIBIANS.all.length
-      animal = SDzoo::AMPHIBIANS.all[more - 1]
-      add_attributes_to_animals(animal)
-      animal.display_all_attributes
-    end
+    puts "You can choose a name from above, or type 'exit'"
   end
 
   def bye
@@ -158,7 +89,4 @@ class SDzoo::CLI
     HEREDOC
     puts "P.S You can do more to help stop animal extinction here: http://endextinction.org/"
   end
-
-
-
 end
