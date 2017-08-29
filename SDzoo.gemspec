@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Find information about all the animals listed on the San Diego Zoo website, including life span, conservation status, taxonomic information and a fun fact! The app/author is not affiliated with the SD zoo.}
   spec.homepage      = "https://rubygems.org/gems/SDzoo"
   spec.license       = "MIT"
-  spec.files         = ['lib/SDzoo.rb', 'lib/SDzoo/animal.rb', 'lib/SDzoo/scraper.rb', 'lib/SDzoo/cli.rb']
+  spec.files         = ['lib/SDzoo.rb', 'lib/SDzoo/animal.rb', 'lib/SDzoo/scraper.rb', 'lib/SDzoo/cli.rb', 'lib/SDzoo/version.rb']
   spec.executables   << "SDzoo"
 
   spec.add_development_dependency "bundler", "~> 1.15"
