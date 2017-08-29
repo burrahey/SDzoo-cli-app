@@ -1,12 +1,18 @@
 class SDzoo::ANIMAL
   attr_accessor :name, :url, :taxonomy, :conservation_status, :life_span, :fun_fact
 
-  @@all = []
+  @@all_mammals = []
+  @@all_reptiles = []
+  @@all_birds = []
+  @@all_fish = []
+  @@all_arthropods = []
+  @@all_amphibians = []
 
-  def initialize(name, url)
+  def initialize(name, url, type)
     @name = name
     @url = url
-    self.class.all << self
+    @type = type
+    self.class.send("all_#{type}") << self
   end
 
   def add_attributes_to_animal(animal_hash)
@@ -15,12 +21,32 @@ class SDzoo::ANIMAL
     end
   end
 
-  def self.all
-    @@all
+  def self.all_mammals
+  	@@all_mammals
   end
 
-  def self.display_all
-    self.all.each_with_index do |animal, index|
+   def self.all_reptiles
+   	@@all_reptiles
+  end
+
+   def self.all_birds
+   	@@all_birds
+  end
+
+   def self.all_fish
+   	@@all_fish
+  end
+  
+   def self.all_arthropods
+   	@@all_arthropods
+  end
+
+   def self.all_amphibians
+   	@@all_amphibians
+  end
+
+  def self.display_all(type)
+    self.all.send("all_#{type}").each_with_index do |animal, index|
       puts "#{index+1}. #{animal.name}"
     end
     puts "\n"
