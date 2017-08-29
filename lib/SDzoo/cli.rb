@@ -25,7 +25,7 @@ class SDzoo::CLI
       else
         "Sorry, that wasn't valid input."
       end
-      puts "What kind of animal would you like to learn about next?"
+      puts "\nWhat kind of animal would you like to learn about next?"
       main_menu
       input = gets.strip.downcase
     end
