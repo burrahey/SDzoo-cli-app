@@ -17,27 +17,11 @@ class SDzoo::CLI
 
         # Handle the case where they entered a number
         if more.to_i > 0 && more.to_i < SDzoo::ANIMAL.send("all_#{input}").length
-          animal = SDzoo::ANIMAL.send("all_#{input}")[more.to_i - 1]
-          add_attributes_to_animals(animal)
-          puts "\nOkay, here's some more info:"
-          animal.display_all_attributes
-        else
-          # Handle the case where they entered a name
-          potential_answers = SDzoo::ANIMAL.send("all_#{input}").select {|animal| animal.name.downcase.include?(more.downcase)}
-          if potential_answers.length == 0
-            puts "\nSorry, none of the animal names match that description."
-          elsif potential_answers.length == 1
-            animal = potential_answers[0]
-            add_attributes_to_animals(animal)
-            animal.display_all_attributes
-          else
-            puts "\nHere are some of the #{input} that match that name: "
-            potential_answers.each do |animal|
-              add_attributes_to_animals(animal)
-              animal.display_all_attributes
-            end
-          end
+          search_by_number(input, more)
 
+        else
+        # Handle the case where they entered a name
+          search_by_name(input, more)
         end
 
         sleep(2)
@@ -68,6 +52,31 @@ class SDzoo::CLI
   def add_attributes_to_animals(animal)
     animal_hash = SDzoo::SCRAPER.add_attributes_to_animal(animal.url)
     animal.add_attributes_to_animal(animal_hash)
+  end
+
+  def search_by_number(input, more)
+    animal = SDzoo::ANIMAL.send("all_#{input}")[more.to_i - 1]
+    add_attributes_to_animals(animal)
+    puts "\nOkay, here's some more info:"
+    animal.display_all_attributes
+
+  end
+
+  def search_by_name(input, more)
+    potential_answers = SDzoo::ANIMAL.send("all_#{input}").select {|animal| animal.name.downcase.include?(more.downcase)}
+    if potential_answers.length == 0
+      puts "\nSorry, none of the animal names match that description."
+    elsif potential_answers.length == 1
+      animal = potential_answers[0]
+      add_attributes_to_animals(animal)
+      animal.display_all_attributes
+    else
+      puts "\nHere are some of the #{input} that match that name: "
+      potential_answers.each do |animal|
+        add_attributes_to_animals(animal)
+        animal.display_all_attributes
+      end
+    end
   end
 
   def main_menu
