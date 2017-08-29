@@ -1,17 +1,41 @@
 class SDzoo::SCRAPER
 
   BASE_PATH = "http://animals.sandiegozoo.org/"
-  def self.scrape_and_create_animals(file_path)
-    sections = Nokogiri::HTML(open(BASE_PATH + file_path)).search("div.views-field-title span.field-content a")
+  BASE_TYPE_PATH = "animals/"
+  def self.scrape_and_create_animals(type)
+    sections = Nokogiri::HTML(open(BASE_PATH + BASE_TYPE_PATH + type)).search("div.views-field-title span.field-content a")
 
-    animal_array = []
+    case type
+    when "mammals"
+      sections.each do |section|
+        animal = SDzoo::MAMMALS.new(section.text, section["href"])
+      end
+    when "reptiles"
+      sections.each do |section|
+        animal = SDzoo::REPTILES.new(section.text, section["href"])
+      end
 
-    sections.each do |section|
-      animal = SDzoo::ANIMAL.new(section.text, section["href"])
-      animal_array << animal
+    when "birds"
+      sections.each do |section|
+        animal = SDzoo::BIRDS.new(section.text, section["href"])
+      end
+
+    when "amphibians"
+      sections.each do |section|
+        animal = SDzoo::AMPHIBIANS.new(section.text, section["href"])
+      end
+
+    when "insects"
+      sections.each do |section|
+        animal = SDzoo::INSECTS.new(section.text, section["href"])
+      end
+
+    when "fish"
+      sections.each do |section|
+        animal = SDzoo::FISH.new(section.text, section["href"])
+      end
     end
 
-    animal_array
   end
 
   def self.add_attributes_to_animal(file_path)

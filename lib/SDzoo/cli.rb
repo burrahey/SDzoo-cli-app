@@ -19,27 +19,27 @@ class SDzoo::CLI
       case input.downcase
       when "1" || "mammals"
         create_animals("mammals")
-        SDzoo::ANIMAL.display_all
+        SDzoo::MAMMALS.display_all
       when "2" || "reptiles"
-        create_animals(type)
-        SDzoo::ANIMAL.display_all
+        create_animals("reptiles")
+        SDzoo::REPTILES.display_all
       when "3" || "birds"
         create_animals("birds")
-        SDzoo::ANIMAL.display_all
+        SDzoo::BIRDS.display_all
       when "4" || "amphibians"
         create_animals("amphibians")
-        SDzoo::ANIMAL.display_all
+        SDzoo::AMPHIBIANS.display_all
       when "5" || "insects"
         create_animals("arthropods")
-        SDzoo::ANIMAL.display_all
+        SDzoo::ANTHROPODS.display_all
       when "6" || "fish"
         create_animals("fish")
-        SDzoo::ANIMAL.display_all
+        SDzoo::FISH.display_all
       when 'exit'
         break
       end
 
-      puts "Here's the list again:"
+      puts "What would you like to see next? Here's the list again, or you can 'exit':"
       puts <<~HEREDOC
         1. Mammals
         2. Reptiles
@@ -56,7 +56,7 @@ class SDzoo::CLI
   end
 
   def create_animals(type)
-    animal_array = SDzoo::SCRAPER.scrape_and_create_animals("animals/" + type)
+    animal_array = SDzoo::SCRAPER.scrape_and_create_animals(type)
   end
 
   def add_attributes_to_animals
@@ -92,7 +92,6 @@ class SDzoo::CLI
     @@@@@@@@@@@@|\________                       ~~~~~\@@@@@@@@@@
     HEREDOC
     puts "P.S You can do more to help stop animal extinction here: http://endextinction.org/"
-    sleep(1)
   end
 
 

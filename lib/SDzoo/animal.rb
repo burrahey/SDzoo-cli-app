@@ -20,12 +20,9 @@ class SDzoo::ANIMAL
   end
 
   def self.display_all
-    puts "\n"
 
     self.all.each_with_index do |animal, index|
       puts "#{index+1}. #{animal.name}"
-      puts "\n"
-
     end
 
 
