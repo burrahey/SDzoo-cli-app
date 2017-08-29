@@ -20,7 +20,7 @@ class SDzoo::ANIMAL
       self.send("#{type}=", value)
     end
   end
-
+    #class methods
   def self.all_mammals
   	@@all_mammals
   end
