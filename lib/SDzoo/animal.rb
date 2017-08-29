@@ -28,11 +28,12 @@ class SDzoo::ANIMAL
 
   def display_all_attributes
     puts "Okay, here's some more info:"
-    puts "Name: #{@name}"
-    puts "Taxonomy: #{@taxonomy}"
-    puts "Conservation Status: #{@conservation_status}"
-    puts "Life Span: #{@life_span}"
-    puts "Fun Fact: #{@fun_fact}"
+    puts "NAME: #{@name}"
+    puts "CONSERVATION STATUS: #{@conservation_status}"
+    puts "LIFE SPAN: #{@life_span}"
+    puts "FUN FACT: #{@fun_fact}"
+    puts "TAXONOMIC INFO:"
+    puts "#{@taxonomy}"
     puts "\n"
   end
 end

@@ -17,6 +17,16 @@ class SDzoo::CLI
     while input != "exit"
 
       case input.downcase
+      when "list"
+        puts  <<~HEREDOC
+          1. Mammals
+          2. Reptiles
+          3. Birds
+          4. Amphibians
+          5. Insects
+          6. Fish
+        HEREDOC
+        puts "You can type a number or name."
       when "1" || "mammals"
         create_animals("mammals")
         SDzoo::MAMMALS.display_all
@@ -91,9 +101,9 @@ class SDzoo::CLI
       when 'exit'
         break
       end
-
-      puts "What would you like to see next? Here's the list again, or you can 'exit':"
-      puts <<~HEREDOC
+      sleep(2)
+      puts "What kind of animal would you like to learn about next?"
+      puts  <<~HEREDOC
         1. Mammals
         2. Reptiles
         3. Birds
@@ -101,7 +111,7 @@ class SDzoo::CLI
         5. Insects
         6. Fish
       HEREDOC
-      puts "You can type a number or name."
+      puts "You can type a number or name, or 'exit'"
       input = gets.strip
     end
 
