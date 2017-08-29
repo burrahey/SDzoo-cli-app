@@ -4,11 +4,10 @@ class SDzoo::CLI
     puts "Welcome to the San Diego Zoo CLI app!"
     puts "To get started, what type of animals would you like to learn more about?"
     main_menu
-    input = gets.strip
+    input = gets.strip.downcase
 
     while input != "exit"
-
-      case input.downcase
+      case input
       when "list"
         main_menu
       when "1" || "mammals"
@@ -29,7 +28,7 @@ class SDzoo::CLI
       sleep(2)
       puts "What kind of animal would you like to learn about next?"
       main_menu
-      input = gets.strip
+      input = gets.strip.downcase
     end
 
     bye

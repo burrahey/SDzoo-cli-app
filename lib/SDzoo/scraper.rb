@@ -27,7 +27,6 @@ class SDzoo::SCRAPER
       end
 
     when "arthropods"
-
       sections.each do |section|
         animal = SDzoo::ARTHROPODS.new(section.text, section["href"])
       end
