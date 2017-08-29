@@ -1,5 +1,7 @@
 class SDzoo::CLI
 
+  VALID_INPUT = ['mammals', 'birds', 'amphibians', 'arthropods', 'fish', 'reptiles']
+
   def call
     puts "Welcome to the San Diego Zoo CLI app!"
     puts "To get started, what type of animals would you like to learn more about?"
@@ -36,8 +38,7 @@ class SDzoo::CLI
   end
 
   def valid_input?(input)
-    valid = ['mammals', 'birds', 'amphibians', 'arthropods', 'fish', 'reptiles']
-    if valid.include?(input)
+    if VALID_INPUT.include?(input)
       return true
     else
       return false
@@ -79,14 +80,7 @@ class SDzoo::CLI
   end
 
   def main_menu
-    puts  <<~HEREDOC
-      Mammals
-      Reptiles
-      Birds
-      Amphibians
-      Arthropods
-      Fish
-    HEREDOC
+    VALID_INPUT.each {|valid_input| puts valid_input.capitalize}
     puts "You can choose a name from above, or type 'exit'"
   end
 
