@@ -14,7 +14,7 @@ class SDzoo::CLI
         create_animals(input)
         SDzoo::ANIMAL.display_all(input)
 
-        puts "What animal would you like to find out more about? Enter a number or name."
+        puts "Which animals would you like to find out more about? Enter a number or name."
         more = gets.strip
 
         # Handle the case where they entered a number
@@ -66,12 +66,8 @@ class SDzoo::CLI
     potential_answers = SDzoo::ANIMAL.send("all_#{input}").select {|animal| animal.name.downcase.include?(more.downcase)}
     if potential_answers.length == 0
       puts "\nSorry, none of the animal names match that description."
-    elsif potential_answers.length == 1
-      animal = potential_answers[0]
-      add_attributes_to_animals(animal)
-      animal.display_all_attributes
     else
-      puts "\nHere are some of the #{input} that match that name: "
+      puts "\nHere are the #{input} that match that name: "
       potential_answers.each do |animal|
         add_attributes_to_animals(animal)
         animal.display_all_attributes

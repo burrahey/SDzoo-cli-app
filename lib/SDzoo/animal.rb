@@ -1,6 +1,6 @@
 class SDzoo::ANIMAL
   attr_accessor :name, :url, :taxonomy, :conservation_status, :life_span, :fun_fact
-
+  
   @@all_mammals = []
   @@all_reptiles = []
   @@all_birds = []
@@ -20,7 +20,21 @@ class SDzoo::ANIMAL
       self.send("#{type}=", value)
     end
   end
-    #class methods
+
+  def display_all_attributes
+    puts "NAME: #{@name}"
+    if @conservation_status.downcase.include?("threat") || @conservation_status.downcase.include?("danger")
+      puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:red)
+    else
+      puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:green)
+    end
+    puts "LIFE SPAN: #{@life_span}"
+    puts "FUN FACT: #{@fun_fact}"
+    puts "TAXONOMIC INFO:"
+    puts "#{@taxonomy}"
+    puts "\n"
+  end
+
   def self.all_mammals
   	@@all_mammals
   end
@@ -52,17 +66,4 @@ class SDzoo::ANIMAL
     puts "\n"
   end
 
-  def display_all_attributes
-    puts "NAME: #{@name}"
-    if @conservation_status.downcase.include?("threat") || @conservation_status.downcase.include?("danger")
-      puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:red)
-    else
-      puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:green)
-    end
-    puts "LIFE SPAN: #{@life_span}"
-    puts "FUN FACT: #{@fun_fact}"
-    puts "TAXONOMIC INFO:"
-    puts "#{@taxonomy}"
-    puts "\n"
-  end
 end
