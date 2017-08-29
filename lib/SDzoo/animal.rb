@@ -9,7 +9,7 @@ class SDzoo::ANIMAL
     self.class.all << self
   end
 
-  def add_attributes_to_animals(animal_hash)
+  def add_attributes_to_animal(animal_hash)
     animal_hash.each do |type, value|
       self.send("#{type}=", value)
     end
@@ -20,12 +20,10 @@ class SDzoo::ANIMAL
   end
 
   def self.display_all
-    puts "\n\n"
-    
+    puts "\n"
+
     self.all.each_with_index do |animal, index|
       puts "#{index+1}. #{animal.name}"
-      puts "Convervation Status: #{animal.conservation_status}"
-      puts "Life Span: #{animal.life_span}"
       puts "\n"
 
     end

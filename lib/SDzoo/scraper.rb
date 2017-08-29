@@ -14,7 +14,7 @@ class SDzoo::SCRAPER
     animal_array
   end
 
-  def self.add_attributes_to_animals(file_path)
+  def self.add_attributes_to_animal(file_path)
     animal_hash = {}
 
     doc = Nokogiri::HTML(open(BASE_PATH + file_path))
