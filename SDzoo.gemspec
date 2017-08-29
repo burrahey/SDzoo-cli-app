@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Archana Burra"]
   spec.email         = ["burra.archana@gmail.com"]
 
-  spec.summary       = %q{San Diego Zoo CLI app to view all the animals}
-  spec.description   = %q{Lots of great descriptions of animals tbd}
+  spec.summary       = %q{San Diego Zoo CLI app to view information about various kinds of animals.}
+  spec.description   = %q{Find information about all the animals listed on the San Diego Zoo website, including life span, conservation status, taxonomic information and a fun fact! The app/author is not affiliated with the SD zoo.}
   spec.homepage      = "https://github.com/burrahey/SDzoo-cli-app"
   spec.license       = "MIT"
 
