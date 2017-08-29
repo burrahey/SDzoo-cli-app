@@ -29,7 +29,11 @@ class SDzoo::ANIMAL
   def display_all_attributes
     puts "Okay, here's some more info:"
     puts "NAME: #{@name}"
-    puts "CONSERVATION STATUS: #{@conservation_status}"
+    if @conservation_status.downcase.include?("threat")
+      puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:red)
+    else
+      puts "CONSERVATION STATUS: #{@conservation_status}"
+    end
     puts "LIFE SPAN: #{@life_span}"
     puts "FUN FACT: #{@fun_fact}"
     puts "TAXONOMIC INFO:"

@@ -12,7 +12,7 @@ require_relative "SDzoo/fish"
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
-
+require 'colorize'
 module SDzoo
   # Your code goes here...
 end
