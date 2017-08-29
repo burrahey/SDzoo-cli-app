@@ -53,10 +53,8 @@ class SDzoo::ANIMAL
   end
 
   def display_all_attributes
-    puts "\n"
-    puts "Okay, here's some more info:"
     puts "NAME: #{@name}"
-    if @conservation_status.downcase.include?("threat")
+    if @conservation_status.downcase.include?("threat") || @conservation_status.downcase.include?("danger")
       puts "CONSERVATION STATUS: #{@conservation_status}".colorize(:red)
     else
       puts "CONSERVATION STATUS: #{@conservation_status}"

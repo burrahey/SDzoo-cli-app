@@ -12,13 +12,32 @@ class SDzoo::CLI
         create_animals(input)
         SDzoo::ANIMAL.display_all(input)
 
-        puts "What animal would you like to find out more about? Enter a number."
-        more = gets.strip.to_i
+        puts "What animal would you like to find out more about? Enter a number or name."
+        more = gets.strip
 
-        if more < SDzoo::ANIMAL.send("all_#{input}").length
-          animal = SDzoo::ANIMAL.send("all_#{input}")[more - 1]
+        # Handle the case where they entered a number
+        if more.to_i > 0 && more.to_i < SDzoo::ANIMAL.send("all_#{input}").length
+          animal = SDzoo::ANIMAL.send("all_#{input}")[more.to_i - 1]
           add_attributes_to_animals(animal)
+          puts "\nOkay, here's some more info:"
           animal.display_all_attributes
+        else
+          # Handle the case where they entered a name
+          potential_answers = SDzoo::ANIMAL.send("all_#{input}").select {|animal| animal.name.downcase.include?(more.downcase)}
+          if potential_answers.length == 0
+            puts "\nSorry, none of the animal names match that description."
+          elsif potential_answers.length == 1
+            animal = potential_answers[0]
+            add_attributes_to_animals(animal)
+            animal.display_all_attributes
+          else
+            puts "\nHere are some of the #{input} that match that name: "
+            potential_answers.each do |animal|
+              add_attributes_to_animals(animal)
+              animal.display_all_attributes
+            end
+          end
+
         end
 
         sleep(2)
@@ -34,7 +53,7 @@ class SDzoo::CLI
   end
 
   def valid_input?(input)
-    valid = ['mammals', 'birds', 'amphibians', 'arthropods', 'fish', 'reptiles', 'fish']
+    valid = ['mammals', 'birds', 'amphibians', 'arthropods', 'fish', 'reptiles']
     if valid.include?(input)
       return true
     else
